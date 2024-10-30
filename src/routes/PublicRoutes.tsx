@@ -4,6 +4,7 @@ import AuthView from '@/views/Auth';
 import { PublicLayout } from '@/layout';
 import { IS_DEBUG } from '@/config';
 import DevView from '@/views/Dev';
+import HomeView from '@/views/Home';
 
 const PUBLIC_ROUTES = [
   {
@@ -20,6 +21,10 @@ const PUBLIC_ROUTES = [
       {
         path: '/about',
         element: <AboutView />,
+      },
+      {
+        path: '/home',
+        element: <HomeView />,
       },
       {
         path: '/auth',
