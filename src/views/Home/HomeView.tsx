@@ -1,10 +1,9 @@
-// import { Card, CardActions, CardContent, CardHeader, Grid } from '@mui/material';
-// import { AppButton, AppView } from '@/components';
-// import { getCurrentVersion } from '@/utils';
 
-import { AppView } from "@/components";
 import Header from "@/layout/Header";
-// import { Typography } from "@mui/material";
+import ImageCarousel from "../Welcome/CarouselView";
+import ProductGallery from "../Welcome/ProductGallery";
+
+
 
 /**
  * Renders "Home" view
@@ -13,9 +12,11 @@ import Header from "@/layout/Header";
  */
 const HomeView = () => {
     return (
-        <AppView>
+        <div>
             <Header />
-        </AppView>
+            <ImageCarousel />
+            <ProductGallery />
+        </div>
     );
 };
 

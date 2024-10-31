@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/system';
 import Button from '@mui/material/Button';
+import { topProduct } from '@/views/Home/mocData';
 
 const SearchContainer = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -15,7 +16,7 @@ const Header: React.FC = () => {
     return (
         <AppBar position="fixed" color="inherit" sx={{ boxShadow: 1 }}>
             <Toolbar sx={{ justifyContent: 'space-between', backgroundColor: 'white' }}>
-                <Button component="div" sx={{ color: 'red', fontWeight: 'bold', marginLeft: 5, fontSize: 25 }}>
+                <Button sx={{ color: 'red', fontWeight: 'bold', marginLeft: 5, fontSize: 25 }}>
                     JUNO
                 </Button>
                 <Stack direction="row" spacing={4} sx={{ flexGrow: 1, justifyContent: 'center' }}>
@@ -32,7 +33,7 @@ const Header: React.FC = () => {
                             freeSolo
                             id="free-solo-2-demo"
                             disableClearable
-                            options={top100Films.map((option) => option.title)}
+                            options={topProduct.map((option) => option.title)}
                             filterOptions={(options, { inputValue }) => {
                                 const filtered = options.filter((option) =>
                                     option.toLowerCase().includes(inputValue.toLowerCase())
@@ -94,13 +95,7 @@ const Header: React.FC = () => {
     );
 };
 
-// The list of top 100 films
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'accc', year: 1992 },
-    { title: 'cddd', year: 1982 },
-    // Add more movies as needed
-];
+
+
 
 export default Header;
