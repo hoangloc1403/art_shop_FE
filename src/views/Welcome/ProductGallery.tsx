@@ -1,40 +1,18 @@
 import React from 'react';
 import { Box, Typography, Grid, Button } from '@mui/material';
-
-const products = [
-    {
-        src: '/img/Screenshot1.png',
-        title: 'Túi Xách Nhỏ Bear Hug',
-        price: '849,000₫',
-    },
-    {
-        src: '/img/Screenshot1.png',
-        title: 'Giày Cao Gót Quai Mary Jane',
-        price: '549,000₫',
-    },
-    {
-        src: '/img/Screenshot1.png',
-        title: 'Balo Bear Hug',
-        price: '899,000₫',
-    },
-    {
-        src: '/img/Screenshot1.png',
-        title: 'Túi Xách Nhỏ Trang Trí Khóa',
-        price: '899,000₫',
-    },
-];
+import { imagesProducts } from '../Home/mocData';
 
 const ProductGallery = () => {
     return (
-        <Box sx={{ padding: '40px', textAlign: 'center' }}>
+        <Box sx={{ padding: '70px', textAlign: 'center' }}>
             <Typography variant="h4" gutterBottom>
                 HÀNG MỚI VỀ
             </Typography>
             <Typography variant="subtitle1" color="textSecondary" gutterBottom>
-                Các sản phẩm bắt nhịp quốc tế, nàng thời thượng không nên bỏ lỡ
+                Bộ sưu tập tranh nghệ thuật đẳng cấp, bắt nhịp xu hướng thế giới, dành riêng cho những người yêu nghệ thuật tranh vẽ.
             </Typography>
             <Grid container spacing={4} sx={{ marginTop: 5 }}>
-                {products.map((product, index) => (
+                {imagesProducts.map((product, index) => (
                     <Grid item xs={12} sm={6} md={3} key={index}>
                         <Button
                             onClick={() => console.log(`${product.title} được nhấn!`)}
@@ -46,6 +24,11 @@ const ProductGallery = () => {
                                 border: '1px solid #e0e0e0',
                                 borderRadius: '8px',
                                 overflow: 'hidden',
+                                transition: 'transform 0.3s, box-shadow 0.3s',
+                                '&:hover': {
+                                    transform: 'scale(1.04)',
+                                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
+                                },
                             }}
                         >
                             <img
@@ -67,7 +50,7 @@ const ProductGallery = () => {
             </Grid>
             <Button
                 variant="text"
-                sx={{ marginTop: '30px', fontSize: '16px', color: 'black', fontFamily: 'inherit' }}
+                sx={{ marginTop: '30px', fontSize: '20px', color: 'black', fontFamily: 'inherit' }}
                 onClick={() => console.log('Xem tất cả được nhấn!')}
             >
                 XEM TẤT CẢ

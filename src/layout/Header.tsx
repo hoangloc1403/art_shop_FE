@@ -17,13 +17,13 @@ const Header: React.FC = () => {
         <AppBar position="fixed" color="inherit" sx={{ boxShadow: 1 }}>
             <Toolbar sx={{ justifyContent: 'space-between', backgroundColor: 'white' }}>
                 <Button sx={{ color: 'red', fontWeight: 'bold', marginLeft: 5, fontSize: 25 }}>
-                    JUNO
+                    KULI
                 </Button>
                 <Stack direction="row" spacing={4} sx={{ flexGrow: 1, justifyContent: 'center' }}>
                     <Button sx={{ color: 'black' }}>Hàng mới</Button>
                     <Button sx={{ color: 'black' }}>Sản phẩm</Button>
                     <Button sx={{ color: 'red' }}>Sale thương thương</Button>
-                    <Button sx={{ color: 'red' }}>Quần áo sale upto 50%</Button>
+                    <Button sx={{ color: 'red' }}>Tranh vẽ sale upto 50%</Button>
                     <Button sx={{ color: 'black' }}>Showroom</Button>
                 </Stack>
 

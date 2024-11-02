@@ -2,6 +2,8 @@
 import Header from "@/layout/Header";
 import ImageCarousel from "../Welcome/CarouselView";
 import ProductGallery from "../Welcome/ProductGallery";
+import FaceGallery from "../Welcome/FaceGallery";
+import Footer from "../Welcome/Footer";
 
 
 
@@ -16,6 +18,8 @@ const HomeView = () => {
             <Header />
             <ImageCarousel />
             <ProductGallery />
+            <FaceGallery />
+            <Footer />
         </div>
     );
 };
