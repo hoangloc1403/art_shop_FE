@@ -1,5 +1,5 @@
 
-import Header from "@/layout/Header";
+import Header from "@/layout/components/Header";
 import ImageCarousel from "../Welcome/CarouselView";
 import ProductGallery from "../Welcome/ProductGallery";
 import FaceGallery from "../Welcome/FaceGallery";

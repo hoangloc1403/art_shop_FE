@@ -6,6 +6,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/system';
 import Button from '@mui/material/Button';
 import { topProduct } from '@/views/Home/mocData';
+import BUTTON_TEXT from '@/views/Home/const';
 
 const SearchContainer = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -20,11 +21,11 @@ const Header: React.FC = () => {
                     KULI
                 </Button>
                 <Stack direction="row" spacing={4} sx={{ flexGrow: 1, justifyContent: 'center' }}>
-                    <Button sx={{ color: 'black' }}>Hàng mới</Button>
-                    <Button sx={{ color: 'black' }}>Sản phẩm</Button>
-                    <Button sx={{ color: 'red' }}>Sale thương thương</Button>
-                    <Button sx={{ color: 'red' }}>Tranh vẽ sale upto 50%</Button>
-                    <Button sx={{ color: 'black' }}>Showroom</Button>
+                    <Button sx={{ color: 'black' }}>{BUTTON_TEXT.NEW_PRODUCT}</Button>
+                    <Button sx={{ color: 'black' }}>{BUTTON_TEXT.PRODUCT}</Button>
+                    <Button sx={{ color: 'red' }}>{BUTTON_TEXT.LOVE_SALE}</Button>
+                    <Button sx={{ color: 'red' }}>{BUTTON_TEXT.ART_SALE}</Button>
+                    <Button sx={{ color: 'black' }}>{BUTTON_TEXT.SHOWROOM}</Button>
                 </Stack>
 
                 <Stack direction="row" spacing={1} alignItems="center" sx={{ marginRight: 2 }}>
@@ -60,7 +61,7 @@ const Header: React.FC = () => {
                             )}
                             renderOption={(props, option) => {
                                 // If the option is the no product message, render a non-interactive element
-                                if (option === 'Sản phẩm không có') {
+                                if (option === BUTTON_TEXT.NO_PRODUCT) {
                                     return (
                                         <li {...props} style={{ color: 'gray', pointerEvents: 'none' }}>
                                             {option}

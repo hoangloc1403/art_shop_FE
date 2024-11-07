@@ -1,6 +1,8 @@
-import React from 'react';
+
 import { Box, Typography, Grid, Button } from '@mui/material';
 import { imagesProducts } from '../Home/mocData';
+import BUTTON_TEXT from '../Home/const';
+
 
 const ProductGallery = () => {
     return (
@@ -14,16 +16,12 @@ const ProductGallery = () => {
             <Grid container spacing={4} sx={{ marginTop: 5 }}>
                 {imagesProducts.map((product, index) => (
                     <Grid item xs={12} sm={6} md={3} key={index}>
-                        <Button
-                            onClick={() => console.log(`${product.title} được nhấn!`)}
+                        <Box
                             sx={{
-                                display: 'block',
-                                width: '100%',
-                                padding: 0,
-                                textAlign: 'left',
+                                position: 'relative',
+                                overflow: 'hidden',
                                 border: '1px solid #e0e0e0',
                                 borderRadius: '8px',
-                                overflow: 'hidden',
                                 transition: 'transform 0.3s, box-shadow 0.3s',
                                 '&:hover': {
                                     transform: 'scale(1.04)',
@@ -43,8 +41,10 @@ const ProductGallery = () => {
                                 <Typography variant="body2" color="textPrimary">
                                     {product.price}
                                 </Typography>
+
                             </Box>
-                        </Button>
+
+                        </Box>
                     </Grid>
                 ))}
             </Grid>
@@ -53,7 +53,7 @@ const ProductGallery = () => {
                 sx={{ marginTop: '30px', fontSize: '20px', color: 'black', fontFamily: 'inherit' }}
                 onClick={() => console.log('Xem tất cả được nhấn!')}
             >
-                XEM TẤT CẢ
+                {BUTTON_TEXT.ALL}
             </Button>
         </Box>
     );

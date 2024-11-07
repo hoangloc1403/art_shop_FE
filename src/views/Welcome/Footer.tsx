@@ -1,9 +1,9 @@
-import React from 'react';
 import { Grid, Typography, Box, Divider } from '@mui/material';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { TEXT } from '../Home/const';
 const Footer = () => {
     return (
         <Box padding="70px" >
@@ -15,20 +15,20 @@ const Footer = () => {
                         GỌI MUA HÀNG ONLINE (08:00 - 21:00 mỗi ngày)
                     </Typography>
                     <Typography lineHeight='50px' fontSize='25px' >
-                        1800 1162
+                        {TEXT.HOTLINE}
                     </Typography>
                     <Typography fontSize='13px'>
-                        Tất cả các ngày trong tuần (Trừ tết Âm Lịch)
+                        {TEXT.TIME_WORK}
                     </Typography>
 
                     <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize='15px' marginTop="35px">
                         GÓP Ý & KHIẾU NẠI (08:30 - 20:30)
                     </Typography>
                     <Typography lineHeight='50px' fontSize='25px' >
-                        1800 1160
+                        {TEXT.HOTLINE}
                     </Typography>
                     <Typography fontSize='13px'>
-                        Tất cả các ngày trong tuần (Trừ tết Âm Lịch)
+                        {TEXT.TIME_WORK}
                     </Typography>
                 </Grid>
 
@@ -89,10 +89,10 @@ const Footer = () => {
             {/* Phần cuối */}
             <Box textAlign="center" marginTop="35px" borderTop="1px solid #ddd" paddingTop="10px">
                 <Typography variant="body2" color="textSecondary">
-                    © Công ty Cổ phần Kuli Sài Gòn
+                    {TEXT.COMPANY}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                    Powered by KuliSG
+                    {TEXT.CREATE}
                 </Typography>
             </Box>
         </Box>
