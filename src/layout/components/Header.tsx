@@ -6,7 +6,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { styled } from '@mui/system';
 import Button from '@mui/material/Button';
 import { topProduct } from '@/views/Home/mocData';
-import BUTTON_TEXT from '@/views/Home/const';
+import { BUTTON_TEXT } from '@/views/Home/const';
+
 
 const SearchContainer = styled('div')(({ theme }) => ({
     position: 'relative',

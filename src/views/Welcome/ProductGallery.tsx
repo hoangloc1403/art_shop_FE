@@ -1,8 +1,7 @@
 
 import { Box, Typography, Grid, Button } from '@mui/material';
 import { imagesProducts } from '../Home/mocData';
-import BUTTON_TEXT from '../Home/const';
-
+import { BUTTON_TEXT } from '../Home/const';
 
 const ProductGallery = () => {
     return (
