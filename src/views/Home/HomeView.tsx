@@ -1,11 +1,8 @@
-
-import Header from "@/layout/components/Header";
-import ImageCarousel from "../Welcome/CarouselView";
-import ProductGallery from "../Welcome/ProductGallery";
-import FaceGallery from "../Welcome/FaceGallery";
-import Footer from "../Welcome/Footer";
-
-
+import Header from '@/layout/components/Header';
+import ImageCarousel from '../Welcome/CarouselView';
+import ProductGallery from '../Welcome/ProductGallery';
+import FaceGallery from '../Welcome/FaceGallery';
+import Footer from '../Welcome/Footer';
 
 /**
  * Renders "Home" view
@@ -13,15 +10,15 @@ import Footer from "../Welcome/Footer";
  * @page Home
  */
 const HomeView = () => {
-    return (
-        <div>
-            <Header />
-            <ImageCarousel />
-            <ProductGallery />
-            <FaceGallery />
-            <Footer />
-        </div>
-    );
+  return (
+    <>
+      <Header />
+      <ImageCarousel />
+      <ProductGallery />
+      <FaceGallery />
+      <Footer />
+    </>
+  );
 };
 
 export default HomeView;

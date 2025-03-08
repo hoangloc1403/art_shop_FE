@@ -5,10 +5,13 @@ import { PublicLayout } from '@/layout';
 import { IS_DEBUG } from '@/config';
 import DevView from '@/views/Dev';
 import HomeView from '@/views/Home';
+import ProductDetailView from '@/views/ProductDetail';
+import CartView from '@/views/Cart';
+import CheckoutView from '@/views/Checkout';
 
 const PUBLIC_ROUTES = [
   {
-    element: <PublicLayout />, // Layout as parent/wrapper component for all routes
+    element: <PublicLayout />,
     children: [
       {
         path: '*',
@@ -19,12 +22,24 @@ const PUBLIC_ROUTES = [
         element: <AuthView />,
       },
       {
+        path: '/home',
+        element: <HomeView />,
+      },
+      {
         path: '/about',
         element: <AboutView />,
       },
       {
-        path: '/home',
-        element: <HomeView />,
+        path: '/detail',
+        element: <ProductDetailView />,
+      },
+      {
+        path: '/cart',
+        element: <CartView />,
+      },
+      {
+        path: '/checkout',
+        element: <CheckoutView />,
       },
       {
         path: '/auth',
