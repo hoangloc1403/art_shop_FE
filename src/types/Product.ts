@@ -1,5 +1,6 @@
 type Product = {
-  src: string;
+  id: string;
+  imageUrl: string;
   title: string;
   price: string;
 };

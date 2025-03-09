@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material';
+import { FunctionComponent } from 'react';
 
-interface ProductGalleryDescriptionProps {
+interface Props {
   content: string;
 }
 
-const ProductGalleryDescription = ({ content }: ProductGalleryDescriptionProps) => {
+const GalleryDescription: FunctionComponent<Props> = ({ content }) => {
   return (
     <Typography
       variant="subtitle1"
@@ -22,4 +23,4 @@ const ProductGalleryDescription = ({ content }: ProductGalleryDescriptionProps) 
   );
 };
 
-export default ProductGalleryDescription;
+export default GalleryDescription;

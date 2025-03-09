@@ -1,11 +1,12 @@
-import Product from '@/types/Product';
+import { Product } from '@/types';
 import { Box, Typography } from '@mui/material';
+import { FunctionComponent } from 'react';
 
-interface ProductGalleryItemProps {
+interface Props {
   item: Product;
 }
 
-const ProductGalleryItem = ({ item }: ProductGalleryItemProps) => {
+const ProductGalleryItem: FunctionComponent<Props> = ({ item }) => {
   return (
     <Box
       sx={{
@@ -20,7 +21,7 @@ const ProductGalleryItem = ({ item }: ProductGalleryItemProps) => {
         },
       }}
     >
-      <img src={item.src} alt={item.title} style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+      <img src={item.imageUrl} alt={item.title} style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
       <Box sx={{ padding: '16px' }}>
         <Typography variant="body1" fontWeight="bold" color="black">
           {item.title}

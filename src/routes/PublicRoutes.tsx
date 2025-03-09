@@ -8,6 +8,7 @@ import HomeView from '@/views/Home';
 import ProductDetailView from '@/views/ProductDetail';
 import CartView from '@/views/Cart';
 import CheckoutView from '@/views/Checkout';
+import { SignInView } from '@/views/SignIn';
 
 const PUBLIC_ROUTES = [
   {
@@ -22,6 +23,10 @@ const PUBLIC_ROUTES = [
         element: <AuthView />,
       },
       {
+        path: '/sign_in',
+        element: <SignInView />,
+      },
+      {
         path: '/home',
         element: <HomeView />,
       },
@@ -30,7 +35,7 @@ const PUBLIC_ROUTES = [
         element: <AboutView />,
       },
       {
-        path: '/detail',
+        path: '/detail/:id',
         element: <ProductDetailView />,
       },
       {
