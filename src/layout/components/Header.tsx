@@ -10,6 +10,7 @@ import { BUTTON_TEXT } from '@/views/Home/const';
 import { useEventSwitchDarkMode } from '@/hooks';
 import { AppIconButton } from '@/components';
 import { useAppStore } from '@/store';
+import { useNavigate } from 'react-router-dom';
 
 const SearchContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -19,6 +20,7 @@ const SearchContainer = styled('div')(({ theme }) => ({
 const Header: React.FC = () => {
   const onSwitchDarkMode = useEventSwitchDarkMode();
   const [state] = useAppStore();
+  const navigate = useNavigate();
 
   //   const DarkModeButton = (
   //     <AppIconButton
@@ -101,7 +103,7 @@ const Header: React.FC = () => {
         <IconButton color="inherit">
           <AccountCircle />
         </IconButton>
-        <IconButton color="inherit">
+        <IconButton color="inherit" onClick={() => navigate('/cart')}>
           <ShoppingCart />
         </IconButton>
 

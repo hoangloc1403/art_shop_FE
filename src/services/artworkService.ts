@@ -25,10 +25,19 @@ const deleteArtwork = async (id: string) => {
   return await api.delete(`${ARTWORK_URL}/${id}`);
 };
 
+const uploadImage = async (formData: FormData) => {
+  return await api.post(`${ARTWORK_URL}/upload_image`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+};
+
 export const artworkService = {
   getArtworks,
   getArtwork,
   createArtwork,
   updateArtwork,
   deleteArtwork,
+  uploadImage,
 };

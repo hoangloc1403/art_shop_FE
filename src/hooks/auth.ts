@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '@/store';
 import { IS_FAKE_LOGIN } from '@/config';
-import { sessionStorageDelete } from '@/utils/sessionStorage';
+import { sessionStorageDelete, sessionStorageGet } from '@/utils/sessionStorage';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
 type CurrentUser = {
   id?: string;
@@ -36,6 +37,28 @@ export function useIsAuthenticated() {
 }
 
 /**
+ * Custom hook to decode JWT and return user role
+ * @returns {number | null} Role number (e.g. 3) or null if not available
+ */
+export function useUserRoleFromToken(): number | null {
+  // const token = localStorage.getItem('access_token');
+  const token = sessionStorageGet('access_token');
+
+  const role = useMemo(() => {
+    if (!token) return null;
+    try {
+      const decoded = jwtDecode<JwtPayload>(token as string);
+      return decoded?.role ?? null;
+    } catch (err) {
+      console.error('Failed to decode token:', err);
+      return null;
+    }
+  }, [token]);
+
+  return role;
+}
+
+/**
  * Returns event handler to Logout current user
  * @returns {function} calling this event logs out current user
  */
@@ -46,6 +69,8 @@ export function useEventLogout() {
   return useCallback(() => {
     // TODO: AUTH: add auth and tokens cleanup here
     sessionStorageDelete('access_token');
+    sessionStorageDelete('avatar_url');
+    sessionStorageDelete('fullName');
 
     dispatch({ type: 'LOG_OUT' });
     navigate('/', { replace: true }); // Redirect to home page by reloading the App

@@ -1,5 +1,6 @@
 import { Avatar, Stack, Typography } from '@mui/material';
 import { AppLink } from '@/components';
+import { sessionStorageGet } from '@/utils/sessionStorage'; // Thêm dòng này
 
 interface UserInfoProps {
   className?: string;
@@ -15,9 +16,9 @@ interface UserInfoProps {
  * @param {object} [user] - logged user data {name, email, avatar...}
  */
 const UserInfo = ({ showAvatar = false, user, ...restOfProps }: UserInfoProps) => {
-  const fullName = user?.name || [user?.nameFirst || '', user?.nameLast || ''].join(' ').trim();
-  const srcAvatar = user?.avatar ? user?.avatar : undefined;
-  const userPhoneOrEmail = user?.phone || (user?.email as string);
+  const fullName = (sessionStorageGet('fullName') as string) || undefined;
+  const avatarFromSession = sessionStorageGet('avatar_url');
+  const srcAvatar = avatarFromSession || user?.avatar || undefined;
 
   return (
     <Stack alignItems="center" minHeight="fit-content" marginBottom={2} {...restOfProps}>
@@ -37,7 +38,6 @@ const UserInfo = ({ showAvatar = false, user, ...restOfProps }: UserInfoProps) =
       <Typography sx={{ mt: 1 }} variant="h6">
         {fullName || 'Current User'}
       </Typography>
-      <Typography variant="body2">{userPhoneOrEmail || 'Loading...'}</Typography>
     </Stack>
   );
 };

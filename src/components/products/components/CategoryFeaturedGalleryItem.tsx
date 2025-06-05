@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CategoryFeaturedGalleryItem: FunctionComponent<Props> = ({ item }) => {
-  const artworkTotalText = `${item.artworkTotal} tác phẩm`;
+  const artworkTotalText = `${item.artworkCount} tác phẩm`;
 
   return (
     <Box
@@ -23,7 +23,7 @@ const CategoryFeaturedGalleryItem: FunctionComponent<Props> = ({ item }) => {
         },
       }}
     >
-      <img src={item.imageUrl} alt={item.name} style={{ width: '100%', height: 'auto', objectFit: 'cover' }} />
+      <img src={item.imageUrl} alt={item.name} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
       <Box sx={{ padding: '16px' }}>
         <Typography variant="body1" fontWeight="bold" color="black">
           {item.name}

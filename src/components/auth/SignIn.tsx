@@ -4,6 +4,7 @@ import { useAppStore } from '@/store';
 import { sessionStorageSet } from '@/utils';
 import SignInForm from './components/SignInForm';
 import { authService } from '@/services';
+import { jwtDecode } from 'jwt-decode';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const SignIn = () => {
 
   const onLogin = async (data: { email: string; password: string }) => {
     try {
+      console.log('Login Data ', data);
       const response = await authService.login(data);
       console.log('Login Response ', response);
       const { access_token } = response;
@@ -21,8 +23,12 @@ const SignIn = () => {
       // Cập nhật state đăng nhập
       dispatch({ type: 'LOG_IN' });
 
-      // Chuyển hướng đến trang chủ
-      navigate('/', { replace: true });
+      const user = jwtDecode(access_token);
+      if (user.role === 1) {
+        navigate('/admin/products', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
     } catch (error) {
       console.error('Login failed:', error);
       alert('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!');

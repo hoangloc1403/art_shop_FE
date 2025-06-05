@@ -1,3 +1,4 @@
+import CheckoutSuccessView from './CheckoutSuccessView';
 import CheckoutView from './CheckoutView';
 
-export default CheckoutView;
+export { CheckoutView, CheckoutSuccessView };

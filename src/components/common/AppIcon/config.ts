@@ -19,6 +19,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import NotificationsIcon from '@mui/icons-material/NotificationsOutlined';
 import DangerousIcon from '@mui/icons-material/Dangerous';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import PalleteIcon from '@mui/icons-material/Palette';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CategoryIcon from '@mui/icons-material/Category';
 
 /**
  * List of all available Icon names
@@ -53,4 +57,8 @@ export const ICONS /* Note: Setting type disables property autocomplete :( was -
   logout: ExitToAppIcon,
   notifications: NotificationsIcon,
   error: DangerousIcon,
+  order: InventoryIcon,
+  product: PalleteIcon,
+  dashboard: DashboardIcon,
+  category: CategoryIcon,
 };

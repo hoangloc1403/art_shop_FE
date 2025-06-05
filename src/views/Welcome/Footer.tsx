@@ -5,98 +5,98 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { TEXT } from '../Home/const';
 const Footer = () => {
-    return (
-        <Box padding="70px" >
-            <Divider sx={{ marginBottom: 5 }} />
-            <Grid container spacing={4}>
-                {/* Cột Gọi Mua Hàng */}
-                <Grid item xs={12} sm={4}>
-                    <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize='15px'>
-                        GỌI MUA HÀNG ONLINE (08:00 - 21:00 mỗi ngày)
-                    </Typography>
-                    <Typography lineHeight='50px' fontSize='25px' >
-                        {TEXT.HOTLINE}
-                    </Typography>
-                    <Typography fontSize='13px'>
-                        {TEXT.TIME_WORK}
-                    </Typography>
+  return (
+    <Box padding="70px">
+      <Divider sx={{ marginBottom: 5 }} />
+      <Grid container spacing={4}>
+        {/* Cột Gọi Mua Hàng */}
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
+            GỌI MUA HÀNG ONLINE (08:00 - 21:00 mỗi ngày)
+          </Typography>
+          <Typography lineHeight="50px" fontSize="25px">
+            {TEXT.HOTLINE}
+          </Typography>
+          <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
 
-                    <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize='15px' marginTop="35px">
-                        GÓP Ý & KHIẾU NẠI (08:30 - 20:30)
-                    </Typography>
-                    <Typography lineHeight='50px' fontSize='25px' >
-                        {TEXT.HOTLINE}
-                    </Typography>
-                    <Typography fontSize='13px'>
-                        {TEXT.TIME_WORK}
-                    </Typography>
-                </Grid>
+          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px" marginTop="35px">
+            GÓP Ý & KHIẾU NẠI (08:00 - 21:00 mỗi ngày)
+          </Typography>
+          <Typography lineHeight="50px" fontSize="25px">
+            {TEXT.HOTLINE}
+          </Typography>
+          <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
+        </Grid>
 
-                {/* Cột Hệ Thống Showroom */}
-                <Grid item xs={12} sm={4}>
-                    <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize='15px'  >
-                        HỆ THỐNG SHOWROOM
-                    </Typography>
-                    <img
-                        src="img/showroom.png"
-                        alt="Showroom"
-                        style={{ width: '100%', marginTop: '10px' }}
-                    />
-                    {/* <Link href="#" underline="hover" color="inherit">
+        {/* Cột Hệ Thống Showroom */}
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
+            HỆ THỐNG SHOWROOM
+          </Typography>
+          <img src="img/showroom.png" alt="Showroom" style={{ width: '100%', marginTop: '10px' }} />
+          {/* <Link href="#" underline="hover" color="inherit">
                         Xem địa chỉ hệ thống 54 showroom
                     </Link> */}
-                </Grid>
+        </Grid>
 
-                {/* Cột Fanpage */}
-                <Grid item xs={12} sm={4}>
-                    <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize='15px'>
-                        FANPAGE CỦA CHÚNG TÔI
-                    </Typography>
-                    <img
-                        src="img/fanpage.webp"
-                        alt="Fanpage"
-                        style={{ width: '100%', marginTop: '10px' }}
-                    />
-                    <Box display="flex" justifyContent="flex-start" marginTop="10px">
-                        <FacebookIcon sx={{
-                            marginRight: '10px', '&:hover': {
-                                transform: 'scale(1.04)',
-                                color: '#3B5998',
-                            },
-                        }} />
-                        <InstagramIcon sx={{
-                            margin: "0 10px", '&:hover': {
-                                transform: 'scale(1.04)',
-                                color: '#CD486B',
-                            },
-                        }} />
-                        <YouTubeIcon sx={{
-                            margin: "0 10px", '&:hover': {
-                                transform: 'scale(1.04)',
-                                color: '#E50914',
-                            },
-                        }} />
-                        <TwitterIcon sx={{
-                            margin: "0 10px", '&:hover': {
-                                transform: 'scale(1.04)',
-                                color: '#1DA1F2',
-                            },
-                        }} />
-                    </Box>
-                </Grid>
-            </Grid>
+        {/* Cột Fanpage */}
+        <Grid item xs={12} sm={4}>
+          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
+            FANPAGE CỦA CHÚNG TÔI
+          </Typography>
+          <img src="img/fanpage.webp" alt="Fanpage" style={{ width: '100%', marginTop: '10px' }} />
+          <Box display="flex" justifyContent="flex-start" marginTop="10px">
+            <FacebookIcon
+              sx={{
+                marginRight: '10px',
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  color: '#3B5998',
+                },
+              }}
+            />
+            <InstagramIcon
+              sx={{
+                margin: '0 10px',
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  color: '#CD486B',
+                },
+              }}
+            />
+            <YouTubeIcon
+              sx={{
+                margin: '0 10px',
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  color: '#E50914',
+                },
+              }}
+            />
+            <TwitterIcon
+              sx={{
+                margin: '0 10px',
+                '&:hover': {
+                  transform: 'scale(1.04)',
+                  color: '#1DA1F2',
+                },
+              }}
+            />
+          </Box>
+        </Grid>
+      </Grid>
 
-            {/* Phần cuối */}
-            <Box textAlign="center" marginTop="35px" borderTop="1px solid #ddd" paddingTop="10px">
-                <Typography variant="body2" color="textSecondary">
-                    {TEXT.COMPANY}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                    {TEXT.CREATE}
-                </Typography>
-            </Box>
-        </Box>
-    );
+      {/* Phần cuối */}
+      <Box textAlign="center" marginTop="35px" borderTop="1px solid #ddd" paddingTop="10px">
+        <Typography variant="body2" color="textSecondary">
+          {TEXT.COMPANY}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          {TEXT.CREATE}
+        </Typography>
+      </Box>
+    </Box>
+  );
 };
 
 export default Footer;

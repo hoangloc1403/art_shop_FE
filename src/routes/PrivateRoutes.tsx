@@ -2,11 +2,14 @@ import { Navigate } from 'react-router-dom';
 import { IS_DEBUG } from '@/config';
 import { PrivateLayout } from '@/layout';
 import { NotFoundView } from '@/views';
-import AboutView from '@/views/About';
+import AboutView from '@/views/admin/ProductManagement';
 import DevView from '@/views/Dev';
 import WelcomeView from '@/views/Welcome';
 import NotImplementedView from '@/views/NotImplementedView';
 import HomeView from '@/views/Home';
+import CartView from '@/views/Cart';
+import ProductDetailView from '@/views/ProductDetail';
+import { CheckoutSuccessView, CheckoutView } from '@/views/Checkout';
 
 const PRIVATE_ROUTES = [
   {
@@ -23,6 +26,22 @@ const PRIVATE_ROUTES = [
       {
         path: '/home',
         element: <HomeView />,
+      },
+      {
+        path: '/cart',
+        element: <CartView />,
+      },
+      {
+        path: '/checkout',
+        element: <CheckoutView />,
+      },
+      {
+        path: '/checkout/success',
+        element: <CheckoutSuccessView />,
+      },
+      {
+        path: '/detail/:id',
+        element: <ProductDetailView />,
       },
       {
         path: 'auth/*',

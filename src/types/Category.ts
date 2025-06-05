@@ -2,7 +2,7 @@ type Category = {
   id: string;
   name: string;
   imageUrl: string;
-  artworkTotal: number;
+  artworkCount: number;
 };
 
 export default Category;

@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import AboutView from '@/views/About';
+import AboutView from '@/views/admin/ProductManagement';
 import AuthView from '@/views/Auth';
 import { PublicLayout } from '@/layout';
 import { IS_DEBUG } from '@/config';
@@ -41,10 +41,6 @@ const PUBLIC_ROUTES = [
       {
         path: '/cart',
         element: <CartView />,
-      },
-      {
-        path: '/checkout',
-        element: <CheckoutView />,
       },
       {
         path: '/auth',

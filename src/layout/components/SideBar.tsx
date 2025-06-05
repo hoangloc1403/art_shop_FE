@@ -37,6 +37,7 @@ const SideBar: FunctionComponent<SideBarProps> = ({ anchor, open, variant, items
     },
     [variant, onClose]
   );
+  console.log('State: ', state);
 
   return (
     <Drawer

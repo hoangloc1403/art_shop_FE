@@ -1,7 +1,7 @@
 import { FunctionComponent, PropsWithChildren, useReducer, useEffect } from 'react';
 import { useMediaQuery } from '@mui/material';
 import { localStorageGet } from '@/utils/localStorage';
-import { sessionStorageGet } from '@/utils/sessionStorage'; // Thêm dòng này
+import { sessionStorageGet, sessionStorageSet } from '@/utils/sessionStorage'; // Thêm dòng này
 import { AppStoreContext } from './AppStore';
 import AppStoreReducer from './AppStoreReducer';
 import { AppStoreState, INITIAL_APP_STORE_STATE } from './config';
@@ -30,10 +30,14 @@ const AppStoreProvider: FunctionComponent<PropsWithChildren> = ({ children }) =>
       if (tokenExists) {
         try {
           const user = await userService.getProfile();
+          sessionStorageSet('avatar_url', user.avatarUrl);
+          sessionStorageSet('fullName', user.fullName);
           dispatch({ type: 'LOG_IN', payload: user });
         } catch (error) {
           console.error('Token invalid, logging out', error);
           sessionStorage.removeItem('access_token');
+          sessionStorage.removeItem('avatar_url');
+          sessionStorage.removeItem('fullName');
           dispatch({ type: 'LOG_OUT' });
         }
       }

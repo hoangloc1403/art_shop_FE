@@ -2,19 +2,28 @@ import { ThemeProvider } from '@/theme';
 import StoreProvider from '@/store';
 import { ErrorBoundary } from '@/components';
 import Routes from '@/routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { SnackbarProvider } from 'notistack';
 
 /**
  * Root Application Component
  * @component MainApp
  */
+
+const queryClient = new QueryClient();
+
 const MainApp = () => {
   return (
     <ErrorBoundary name="App">
-      <StoreProvider>
-        <ThemeProvider>
-          <Routes />
-        </ThemeProvider>
-      </StoreProvider>
+      <QueryClientProvider client={queryClient}>
+        <StoreProvider>
+          <ThemeProvider>
+            <SnackbarProvider maxSnack={3}>
+              <Routes />
+            </SnackbarProvider>
+          </ThemeProvider>
+        </StoreProvider>
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 };
