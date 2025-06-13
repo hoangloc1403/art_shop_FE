@@ -13,24 +13,21 @@ import {
   Pagination,
   Chip,
   Collapse,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
   Select,
   MenuItem,
   FormControl,
+  Avatar,
 } from '@mui/material';
 import { useState, useMemo } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { orderService } from '@/services';
-import { useNavigate } from 'react-router-dom';
 import OrderItem from '@/types/OrderItem';
-
-const ORDER_STATUSES = ['pending', 'processing', 'delivered', 'cancelled'];
+import { formatPrice } from '@/utils/format';
+import { OrderStatus } from '@/types/Order';
+import { renderStatusText } from './const/utils';
+import { enqueueSnackbar } from 'notistack';
 
 const OrderManagementTable = () => {
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const [page, setPage] = useState(1);
@@ -39,11 +36,7 @@ const OrderManagementTable = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
-  const {
-    data: orders = [],
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: orders = [] } = useQuery({
     queryKey: ['admin-orders'],
     queryFn: orderService.getOrders,
   });
@@ -87,12 +80,13 @@ const OrderManagementTable = () => {
     });
   };
 
-  const handleStatusChange = async (orderId: string, newStatus: string) => {
+  const handleStatusChange = async (orderId: string, newStatus: OrderStatus) => {
     try {
-      await orderService.updateStatus(orderId, newStatus);
+      await orderService.updateOrder(orderId, { status: newStatus });
+      enqueueSnackbar('Cập nhật trạng thái thành công', { variant: 'success' });
       queryClient.invalidateQueries({ queryKey: ['admin-orders'] });
     } catch (error) {
-      console.error('Failed to update status:', error);
+      enqueueSnackbar('Cập nhật trạng thái thất bại', { variant: 'error' });
     }
   };
 
@@ -154,26 +148,24 @@ const OrderManagementTable = () => {
                   </TableCell>
                   <TableCell>
                     <FormControl size="small" fullWidth>
-                      <Select value={order.status} onChange={(e) => handleStatusChange(order.id, e.target.value)}>
-                        {ORDER_STATUSES.map((status) => (
+                      <Select
+                        value={order.status}
+                        onChange={(e) => handleStatusChange(order.id, e.target.value as OrderStatus)}
+                        disabled={order.status === 'cancelled'}
+                      >
+                        {Object.values(OrderStatus).map((status) => (
                           <MenuItem key={status} value={status}>
-                            {status}
+                            {renderStatusText(status as OrderStatus)}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
                   </TableCell>
-                  <TableCell>{order.totalPrice.toLocaleString()}₫</TableCell>
+                  <TableCell>{formatPrice(order.totalPrice)}</TableCell>
                   <TableCell>{new Date(order.createdAt).toLocaleString()}</TableCell>
                   <TableCell>
                     <Button size="small" onClick={() => toggleExpand(order.id)}>
                       {expandedRows.has(order.id) ? 'Ẩn' : 'Xem sản phẩm'}
-                    </Button>
-                    <Button size="small" onClick={() => navigate(`/admin/orders/${order.id}`)}>
-                      Chi tiết
-                    </Button>
-                    <Button size="small" color="error">
-                      Xóa
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -181,23 +173,54 @@ const OrderManagementTable = () => {
                 <TableRow>
                   <TableCell colSpan={10} sx={{ p: 0, border: 0 }}>
                     <Collapse in={expandedRows.has(order.id)} timeout="auto" unmountOnExit>
-                      <Box sx={{ px: 2, py: 1, bgcolor: '#f9f9f9' }}>
-                        <Typography variant="subtitle1" fontWeight="bold">
-                          Danh sách sản phẩm:
+                      <Box sx={{ p: 2, bgcolor: '#f9f9f9' }}>
+                        <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                          Chi tiết đơn hàng
                         </Typography>
-                        <List dense>
-                          {order.items.map((item: OrderItem, idx: number) => (
-                            <div key={idx}>
-                              <ListItem>
-                                <ListItemText
-                                  primary={`${item.name} x${item.quantity}`}
-                                  secondary={`Giá: ${item.price.toLocaleString()}₫`}
-                                />
-                              </ListItem>
-                              {idx < order.items.length - 1 && <Divider />}
-                            </div>
-                          ))}
-                        </List>
+
+                        <Table size="small" aria-label="order-items">
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>Hình ảnh</TableCell>
+                              <TableCell>Sản phẩm</TableCell>
+                              <TableCell align="right">Số lượng</TableCell>
+                              <TableCell align="right">Đơn giá</TableCell>
+                              <TableCell align="right">Thành tiền</TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {order.items.map((item: OrderItem) => {
+                              const subTotal = item.price * item.quantity;
+                              return (
+                                <TableRow key={item.id}>
+                                  <TableCell>
+                                    <Avatar
+                                      src={item.artwork.imageUrl}
+                                      alt={item.artwork.title}
+                                      variant="square"
+                                      sx={{ width: 48, height: 48 }}
+                                    />
+                                  </TableCell>
+                                  <TableCell component="th" scope="row">
+                                    {item.artwork.title}
+                                  </TableCell>
+                                  <TableCell align="right">{item.quantity}</TableCell>
+                                  <TableCell align="right">{formatPrice(item.price)}</TableCell>
+                                  <TableCell align="right">{formatPrice(subTotal)}</TableCell>
+                                </TableRow>
+                              );
+                            })}
+
+                            <TableRow>
+                              <TableCell colSpan={3} align="right" sx={{ fontWeight: 'bold' }}>
+                                Tổng đơn hàng
+                              </TableCell>
+                              <TableCell align="right" sx={{ fontWeight: 'bold' }}>
+                                {formatPrice(order.totalPrice)}
+                              </TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
                       </Box>
                     </Collapse>
                   </TableCell>

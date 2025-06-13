@@ -2,6 +2,7 @@ import { FunctionComponent, PropsWithChildren } from 'react';
 import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
+import { InterFontWrapper } from './components';
 
 const TITLE_ADMIN = 'Quản trị hệ thống'; // Title for admin pages
 
@@ -58,9 +59,11 @@ const AdminLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   document.title = title;
 
   return (
-    <TopBarAndSideBarLayout sidebarItems={ADMIN_SIDE_BAR_ITEMS} title={title} variant="sidebarPersistentOnDesktop">
-      {children}
-    </TopBarAndSideBarLayout>
+    <InterFontWrapper>
+      <TopBarAndSideBarLayout sidebarItems={ADMIN_SIDE_BAR_ITEMS} title={title} variant="sidebarPersistentOnDesktop">
+        {children}
+      </TopBarAndSideBarLayout>
+    </InterFontWrapper>
   );
 };
 

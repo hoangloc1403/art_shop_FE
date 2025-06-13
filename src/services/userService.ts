@@ -8,18 +8,16 @@ const getProfile = async (): Promise<User> => {
   return response.data;
 };
 
-// const createArtwork = async (artworkData: any) => {
-//   return await api.post(ARTWORK_URL, artworkData);
-// };
+const updateProfile = async (data: { fullName: string; phoneNumber: string; address: string }) => {
+  return await api.post(`${USER_URL}/profile`, data);
+};
 
-// const updateArtwork = async (id: string, artworkData: any) => {
-//   return await api.put(`${ARTWORK_URL}/${id}`, artworkData);
-// };
-
-// const deleteArtwork = async (id: string) => {
-//   return await api.delete(`${ARTWORK_URL}/${id}`);
-// };
+const changePassword = async (data: { oldPassword: string; newPassword: string }) => {
+  return await api.post(`${USER_URL}/profile/change-password`, data);
+};
 
 export const userService = {
   getProfile,
+  updateProfile,
+  changePassword,
 };

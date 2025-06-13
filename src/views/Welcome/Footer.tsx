@@ -1,100 +1,183 @@
-import { Grid, Typography, Box, Divider } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import { Grid, Typography, Box, Stack } from '@mui/material';
 import { TEXT } from '../Home/const';
+import { ButtonLogo, LinkText } from '@/components/layout';
+import { Chat, FacebookOutlined, Instagram, Twitter } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
-    <Box padding="70px">
-      <Divider sx={{ marginBottom: 5 }} />
-      <Grid container spacing={4}>
-        {/* Cột Gọi Mua Hàng */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
-            GỌI MUA HÀNG ONLINE (08:00 - 21:00 mỗi ngày)
-          </Typography>
-          <Typography lineHeight="50px" fontSize="25px">
-            {TEXT.HOTLINE}
-          </Typography>
-          <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
+    <Box sx={{ px: 40, backgroundColor: '#092933', paddingTop: '50px', paddingBottom: '70px', color: '#fff' }}>
+      <Grid container>
+        <Grid container sx={{ borderBottom: '1px solid #ddd', paddingBottom: '40px', marginBottom: '30px' }}>
+          <Grid item xs={12} sm={6}>
+            <ButtonLogo color="white" hoverColor="#ffffffc3">
+              {'KULISG'}
+            </ButtonLogo>
+            <Typography variant="body2" fontSize="14px" maxWidth="490px">
+              {TEXT.INTRODUCE}
+            </Typography>
+          </Grid>
 
-          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px" marginTop="35px">
-            GÓP Ý & KHIẾU NẠI (08:00 - 21:00 mỗi ngày)
-          </Typography>
-          <Typography lineHeight="50px" fontSize="25px">
-            {TEXT.HOTLINE}
-          </Typography>
-          <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
+          <Grid
+            item
+            xs={12}
+            sm={3}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Stack>
+              <LinkText to="/faq">FAQ</LinkText>
+              <LinkText to="/terms">Điêu khoản dịch vụ</LinkText>
+              <LinkText to="/contact">Liên hệ</LinkText>
+            </Stack>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={3}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+            }}
+          >
+            <Stack>
+              <LinkText to="/terms">Hình thức thanh toán</LinkText>
+              <LinkText to="/faq">Quá trình đặt hàng</LinkText>
+              <LinkText to="/contact">Hướng dân mua hàng online</LinkText>
+            </Stack>
+          </Grid>
         </Grid>
 
-        {/* Cột Hệ Thống Showroom */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
-            HỆ THỐNG SHOWROOM
-          </Typography>
-          <img src="img/showroom.png" alt="Showroom" style={{ width: '100%', marginTop: '10px' }} />
-          {/* <Link href="#" underline="hover" color="inherit">
-                        Xem địa chỉ hệ thống 54 showroom
-                    </Link> */}
+        <Grid container sx={{ borderBottom: '1px solid #ddd', paddingBottom: '40px', marginBottom: '30px' }}>
+          {/* Cột Gọi Mua Hàng */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h4" fontFamily='"General Sans", sans-serif' fontWeight="500" fontSize="14px">
+              GỌI MUA HÀNG ONLINE (08:00 - 21:00)
+            </Typography>
+            <Typography lineHeight="50px" fontSize="25px">
+              {TEXT.HOTLINE}
+            </Typography>
+            <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
+
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              marginTop="35px"
+            >
+              GÓP Ý & KHIẾU NẠI (08:00 - 21:00)
+            </Typography>
+            <Typography lineHeight="50px" fontSize="25px">
+              {TEXT.HOTLINE}
+            </Typography>
+            <Typography fontSize="13px">{TEXT.TIME_WORK}</Typography>
+          </Grid>
+
+          {/* Cột Hệ Thống Showroom */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h4" fontFamily='"General Sans", sans-serif' fontWeight="500" fontSize="14px">
+              HỆ THÔNG SHOWROOM
+            </Typography>
+            <img src="/img/showroom.png" alt="Showroom" style={{ width: '90%', height: '90%', marginTop: '10px' }} />
+          </Grid>
+
+          {/* Cột Fanpage */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h4" fontFamily='"General Sans", sans-serif' fontWeight="500" fontSize="14px">
+              GÓC NGHỆ THUẬT
+            </Typography>
+            <img src="/img/fanpage.jpg" alt="Fanpage" style={{ width: '90%', height: '90%', marginTop: '10px' }} />
+          </Grid>
         </Grid>
 
-        {/* Cột Fanpage */}
-        <Grid item xs={12} sm={4}>
-          <Typography variant="h4" fontFamily="inherit" fontWeight="500" fontSize="15px">
-            FANPAGE CỦA CHÚNG TÔI
-          </Typography>
-          <img src="img/fanpage.webp" alt="Fanpage" style={{ width: '100%', marginTop: '10px' }} />
-          <Box display="flex" justifyContent="flex-start" marginTop="10px">
-            <FacebookIcon
-              sx={{
-                marginRight: '10px',
-                '&:hover': {
-                  transform: 'scale(1.04)',
-                  color: '#3B5998',
-                },
-              }}
-            />
-            <InstagramIcon
-              sx={{
-                margin: '0 10px',
-                '&:hover': {
-                  transform: 'scale(1.04)',
-                  color: '#CD486B',
-                },
-              }}
-            />
-            <YouTubeIcon
-              sx={{
-                margin: '0 10px',
-                '&:hover': {
-                  transform: 'scale(1.04)',
-                  color: '#E50914',
-                },
-              }}
-            />
-            <TwitterIcon
-              sx={{
-                margin: '0 10px',
-                '&:hover': {
-                  transform: 'scale(1.04)',
-                  color: '#1DA1F2',
-                },
-              }}
-            />
-          </Box>
+        <Grid container>
+          <Grid item xs={12} sm={3}>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+              marginBottom="30px"
+            >
+              điện thoại
+            </Typography>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+            >
+              {TEXT.HOTLINE}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+              marginBottom="30px"
+            >
+              e-mail
+            </Typography>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="lowercase"
+            >
+              {TEXT.EMAIL}
+            </Typography>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+              marginBottom="26px"
+            >
+              mạng xã hội
+            </Typography>
+            <Stack direction="row" spacing={1}>
+              <FacebookOutlined sx={{ fontSize: '24px', cursor: 'pointer' }} />
+              <Instagram sx={{ fontSize: '24px', cursor: 'pointer' }} />
+              <Twitter sx={{ fontSize: '24px', cursor: 'pointer' }} />
+              <Chat sx={{ fontSize: '24px', cursor: 'pointer' }} />
+            </Stack>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+              marginBottom="30px"
+            >
+              Copyright
+            </Typography>
+            <Typography
+              variant="h4"
+              fontFamily='"General Sans", sans-serif'
+              fontWeight="500"
+              fontSize="14px"
+              textTransform="uppercase"
+            >
+              © 2025 KULISG
+            </Typography>
+          </Grid>
         </Grid>
       </Grid>
-
-      {/* Phần cuối */}
-      <Box textAlign="center" marginTop="35px" borderTop="1px solid #ddd" paddingTop="10px">
-        <Typography variant="body2" color="textSecondary">
-          {TEXT.COMPANY}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {TEXT.CREATE}
-        </Typography>
-      </Box>
     </Box>
   );
 };

@@ -1,9 +1,9 @@
 import Header from '@/layout/components/Header';
-import ImageCarousel from '../Welcome/CarouselView';
 import FaceGallery from '../Welcome/FaceGallery';
 import Footer from '../Welcome/Footer';
-import { CategoryFeaturedGallery, ProductGallery } from '@/components/products';
-import { QualitySpeedSupport } from './components';
+import { CategoryFeaturedGallery, ProductFeaturedGallery } from '@/components/products';
+import HeroSection from '../Welcome/HeroSection';
+import CustomArtworkRequest from '../Welcome/CustomArtworkRequest';
 
 /**
  * Renders "Home" view
@@ -14,10 +14,13 @@ const HomeView = () => {
   return (
     <>
       <Header />
-      <ImageCarousel />
-      <QualitySpeedSupport />
-      <ProductGallery />
+      {/* <ImageCarousel /> */}
+      <HeroSection />
+      {/* <QualitySpeedSupport /> */}
+      {/* <ProductGallery /> */}
       <CategoryFeaturedGallery />
+      <CustomArtworkRequest />
+      <ProductFeaturedGallery />
       <FaceGallery />
       <Footer />
     </>

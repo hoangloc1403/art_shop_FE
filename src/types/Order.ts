@@ -7,6 +7,14 @@ export enum PaymentMethod {
   BANK_TRANSFER = 'bank_transfer',
 }
 
+export enum OrderStatus {
+  PENDING = 'pending',
+  CONFIRMED = 'confirmed',
+  SHIPPED = 'shipped',
+  DELIVERED = 'delivered',
+  CANCELLED = 'cancelled',
+}
+
 type Order = {
   id: string;
   code: string;
@@ -18,6 +26,7 @@ type Order = {
   items: OrderItem[];
   createdAt: number;
   updatedAt: number;
+  status: OrderStatus;
 };
 
 export default Order;

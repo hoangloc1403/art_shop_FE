@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { envGet, sessionStorageGet } from '@/utils';
+import { enqueueSnackbar } from 'notistack';
 
 export const API_BASE_URL = envGet('VITE_API_URL', true);
 export const API_VERSION = '/v1';
@@ -31,6 +32,25 @@ apiInstance.interceptors.request.use((config) => {
   }
   return config;
 });
+
+apiInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      enqueueSnackbar('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+
+      sessionStorage.removeItem('access_token');
+      sessionStorage.removeItem('avatar_url');
+      sessionStorage.removeItem('fullName');
+
+      setTimeout(() => {
+        window.location.href = '/sign_in';
+      }, 1500);
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Perform a request using axios

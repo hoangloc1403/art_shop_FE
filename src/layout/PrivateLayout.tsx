@@ -3,7 +3,7 @@ import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
-const TITLE_PRIVATE = '_TITLE_'; // Title for pages after authentication
+const TITLE_PRIVATE = 'KuliSG'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links for Private Layout
@@ -48,7 +48,7 @@ const PrivateLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   document.title = title; // Also Update Tab Title  // TODO: Do we need this? Move it to useEffect()?
 
   return (
-    <TopBarAndSideBarLayout sidebarItems={SIDE_BAR_ITEMS} title={title} variant="sidebarPersistentOnDesktop">
+    <TopBarAndSideBarLayout sidebarItems={SIDE_BAR_ITEMS} title={title} variant="sidebarAlwaysTemporary">
       {children}
       {/* <Stack component="footer">Copyright &copy; </Stack> */}
     </TopBarAndSideBarLayout>

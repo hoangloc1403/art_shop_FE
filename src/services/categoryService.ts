@@ -8,8 +8,17 @@ const getTreeCategories = async (): Promise<Category[]> => {
   return response.data;
 };
 
+const getCategory = async (id: string): Promise<Category> => {
+  const response = await api.get<ApiResponse<Category>>(`${CATEGORY_URL}/${id}`);
+  return response.data;
+};
+
 const createCategory = async (categoryData: any) => {
   return await api.post(CATEGORY_URL, categoryData);
+};
+
+const updateCategory = async (id: string, categoryData: any) => {
+  return await api.put(`${CATEGORY_URL}/${id}`, categoryData);
 };
 
 const uploadImage = async (formData: FormData) => {
@@ -24,4 +33,6 @@ export const categoryService = {
   getTreeCategories,
   createCategory,
   uploadImage,
+  getCategory,
+  updateCategory,
 };

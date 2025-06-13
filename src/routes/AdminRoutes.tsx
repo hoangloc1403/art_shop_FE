@@ -9,11 +9,18 @@ import NotImplementedView from '@/views/NotImplementedView';
 import ProductManagementView from '@/views/admin/ProductManagement/ProductManagementView';
 import ProductAddView from '@/views/admin/ProductManagement/ProductAddView';
 import OrderManagementView from '@/views/admin/OrderManagement/OrderManagementView';
-import { CategoryAddView, CategoryManagementView } from '@/views/admin/CategoryManagement';
+import { CategoryAddView, CategoryEditView, CategoryManagementView } from '@/views/admin/CategoryManagement';
+import { ScrollToTop } from '@/components';
+import ProductEditView from '@/views/admin/ProductManagement/ProductEditView';
 
 const ADMIN_ROUTES = [
   {
-    element: <AdminLayout />, // Admin layout wrapper
+    element: (
+      <>
+        <ScrollToTop />
+        <AdminLayout />
+      </>
+    ), // Admin layout wrapper
     children: [
       //   {
       //     path: '/admin',
@@ -32,6 +39,10 @@ const ADMIN_ROUTES = [
         element: <ProductAddView />,
       },
       {
+        path: '/admin/products/:id/edit',
+        element: <ProductEditView />,
+      },
+      {
         path: '/admin/products/edit',
         element: <ProductAddView />,
       },
@@ -42,6 +53,10 @@ const ADMIN_ROUTES = [
       {
         path: '/admin/categories/add',
         element: <CategoryAddView />,
+      },
+      {
+        path: '/admin/categories/:id/edit',
+        element: <CategoryEditView />,
       },
       {
         path: '/admin/orders',

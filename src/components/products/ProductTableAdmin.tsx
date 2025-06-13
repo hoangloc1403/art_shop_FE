@@ -14,11 +14,13 @@ import {
   TableSortLabel,
   Pagination,
 } from '@mui/material';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { artworkService } from '@/services';
 import { Add } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { Paging, Product } from '@/types';
+import { formatPrice } from '@/utils/format';
 
 const ProductManagementTable = () => {
   const navigate = useNavigate();
@@ -28,31 +30,20 @@ const ProductManagementTable = () => {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   const {
-    data: products = [],
+    data: { items: products = [], total = 0 } = {},
     isLoading,
     isError,
-  } = useQuery({
-    queryKey: ['admin-artworks'],
-    queryFn: artworkService.getArtworks,
+  } = useQuery<Paging<Product>>({
+    queryKey: ['admin-artworks', page, sortBy, sortOrder],
+    queryFn: () =>
+      artworkService.getArtworks({
+        page,
+        limit: rowsPerPage,
+        sortBy,
+        sortOrder,
+      }),
+    keepPreviousData: true,
   });
-
-  const sortedProducts = useMemo(() => {
-    const sorted = [...products].sort((a, b) => {
-      const valueA = a[sortBy];
-      const valueB = b[sortBy];
-      if (typeof valueA === 'string') {
-        return sortOrder === 'asc' ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
-      } else {
-        return sortOrder === 'asc' ? valueA - valueB : valueB - valueA;
-      }
-    });
-    return sorted;
-  }, [products, sortBy, sortOrder]);
-
-  const paginatedProducts = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    return sortedProducts.slice(start, start + rowsPerPage);
-  }, [sortedProducts, page, rowsPerPage]);
 
   const handleSort = (column: string) => {
     if (sortBy === column) {
@@ -105,7 +96,7 @@ const ProductManagementTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedProducts.map((product, index) => (
+            {products.map((product, index) => (
               <TableRow key={product.id}>
                 <TableCell>{(page - 1) * rowsPerPage + index + 1}</TableCell>
                 <TableCell>
@@ -123,9 +114,9 @@ const ProductManagementTable = () => {
                 <TableCell>
                   {product.width} x {product.height} cm
                 </TableCell>
-                <TableCell>{product.price.toLocaleString()}₫</TableCell>
+                <TableCell>{formatPrice(product.price)}</TableCell>
                 <TableCell>
-                  <Button size="small" color="primary">
+                  <Button size="small" color="primary" onClick={() => navigate(`/admin/products/${product.id}/edit`)}>
                     Sửa
                   </Button>
                   <Button size="small" color="error">
@@ -139,7 +130,7 @@ const ProductManagementTable = () => {
 
         <Box display="flex" justifyContent="center" py={3}>
           <Pagination
-            count={Math.ceil(products.length / rowsPerPage)}
+            count={Math.ceil(total / rowsPerPage)}
             page={page}
             onChange={(_, value) => setPage(value)}
             color="primary"

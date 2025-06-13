@@ -1,11 +1,38 @@
-import { ApiResponse, Product } from '@/types';
+import { ApiResponse, Paging, Product } from '@/types';
 import { api } from './api';
 
 const ARTWORK_URL = '/artwork';
 
-const getArtworks = async (): Promise<Product[]> => {
-  const response = await api.get<ApiResponse<Product[]>>(ARTWORK_URL);
-  return response.data;
+type FetchParams = {
+  medium?: string;
+  dimensions?: string[]; // ["30x30", "60x60"]
+  categoryIds?: string[]; // ["1", "2", "3"]
+  page?: number;
+  limit?: number;
+  priceFrom?: number;
+  priceTo?: number;
+};
+
+export const getArtworks = async (params: FetchParams = {}): Promise<Paging<Product>> => {
+  const searchParams = new URLSearchParams();
+
+  Object.entries(params).forEach(([key, val]) => {
+    if (val === undefined || val === null) return;
+    if (Array.isArray(val)) {
+      val.forEach((v) => {
+        if (v !== '') searchParams.append(key, String(v));
+      });
+    } else {
+      if (val !== '') searchParams.set(key, String(val));
+    }
+  });
+
+  const queryString = searchParams.toString();
+  const url = queryString ? `${ARTWORK_URL}?${queryString}` : ARTWORK_URL;
+
+  const response = await api.get(url);
+
+  return response.data as Paging<Product>;
 };
 
 const getArtwork = async (id: string | undefined): Promise<Product> => {

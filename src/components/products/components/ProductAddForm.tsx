@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Box,
   Button,
@@ -18,10 +20,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useEffect, useState } from 'react';
 import { artworkService, categoryService } from '@/services';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
 interface Category {
   id: string;
   name: string;
+  imageUrl?: string;
 }
 
 interface ProductAddFormInputs {
@@ -56,6 +61,9 @@ const validationSchema = yup.object().shape({
 });
 
 const ProductAddForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+
   const [loading, setLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -76,7 +84,6 @@ const ProductAddForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     const fetchCategories = async () => {
       try {
         const categories = await categoryService.getTreeCategories();
-        console.log('Danh sách category:', categories);
         setCategories(categories);
       } catch (error) {
         console.error('Lỗi khi lấy danh sách category:', error);
@@ -101,32 +108,29 @@ const ProductAddForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
     try {
       setLoading(true);
 
-      // 1. Chuẩn bị file upload
       const formData = new FormData();
       formData.append('file', data.image[0]);
 
-      // 2. Upload ảnh lên server
       const uploadRes = await artworkService.uploadImage(formData);
-
-      // 3. Lấy URL (và key) trả về
       const { url: imageUrl, key: imageKey } = uploadRes.data ?? {};
 
-      if (!imageUrl) {
-        throw new Error('Không lấy được đường dẫn ảnh sau khi upload');
-      }
+      if (!imageUrl) throw new Error('Không lấy được đường dẫn ảnh sau khi upload');
 
-      // 4. Tạo payload gửi API tạo sản phẩm
       const payload = {
         ...data,
         imageUrl: imageKey,
         categoryIds: data.categoryIds,
       };
 
-      delete payload.image; // loại bỏ FileList trước khi gửi
+      delete payload.image;
 
       await onSubmit(payload);
+
+      enqueueSnackbar('Tạo sản phẩm thành công!', { variant: 'success' });
+      navigate('/admin/products');
     } catch (err) {
       console.error('Lỗi khi tạo sản phẩm:', err);
+      enqueueSnackbar('Lỗi khi tạo sản phẩm!', { variant: 'error' });
     } finally {
       setLoading(false);
     }
@@ -233,7 +237,7 @@ const ProductAddForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
               render={({ field }) => (
                 <Select
                   {...field}
-                  value={field.value || []} // <-- fix ở đây
+                  value={field.value || []}
                   labelId="category-select-label"
                   multiple
                   input={<OutlinedInput label="Danh mục" />}
@@ -282,14 +286,24 @@ const ProductAddForm = ({ onSubmit }: { onSubmit: (data: any) => void }) => {
             </Typography>
           )}
           {imagePreview && (
-            <Box mt={2}>
-              <img src={imagePreview} alt="Preview" style={{ maxWidth: '100%', borderRadius: 8 }} />
+            <Box mt={2} display="flex" justifyContent="center">
+              <img
+                src={imagePreview}
+                alt="Preview"
+                style={{
+                  maxHeight: 240,
+                  maxWidth: '100%',
+                  objectFit: 'cover',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                }}
+              />
             </Box>
           )}
         </Grid>
       </Grid>
 
-      <Button type="submit" variant="contained" fullWidth sx={{ mt: 3 }} disabled={loading}>
+      <Button type="submit" variant="contained" fullWidth sx={{ mt: 3, mb: 3 }} disabled={loading}>
         {loading ? <CircularProgress size={24} /> : 'Tạo sản phẩm'}
       </Button>
     </Box>

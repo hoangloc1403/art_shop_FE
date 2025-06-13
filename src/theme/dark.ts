@@ -13,6 +13,9 @@ export const DARK_THEME: ThemeOptions = {
     //   default: '#121212',
     // },
   },
+  typography: {
+    fontFamily: '"EB Garamond", sans-serif',
+  },
 };
 
 export default DARK_THEME;

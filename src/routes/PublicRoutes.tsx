@@ -5,14 +5,18 @@ import { PublicLayout } from '@/layout';
 import { IS_DEBUG } from '@/config';
 import DevView from '@/views/Dev';
 import HomeView from '@/views/Home';
-import ProductDetailView from '@/views/ProductDetail';
-import CartView from '@/views/Cart';
-import CheckoutView from '@/views/Checkout';
-import { SignInView } from '@/views/SignIn';
+import { SignInView, SignUpView } from '@/views/AuthView';
+import { FilterProductView, ProductDetailView } from '@/views/Product';
+import { ScrollToTop } from '@/components';
 
 const PUBLIC_ROUTES = [
   {
-    element: <PublicLayout />,
+    element: (
+      <>
+        <ScrollToTop />
+        <PublicLayout />
+      </>
+    ),
     children: [
       {
         path: '*',
@@ -20,11 +24,16 @@ const PUBLIC_ROUTES = [
       },
       {
         path: '/',
-        element: <AuthView />,
+        // element: <AuthView />,
+        element: <HomeView />,
       },
       {
         path: '/sign_in',
         element: <SignInView />,
+      },
+      {
+        path: '/sign_up',
+        element: <SignUpView />,
       },
       {
         path: '/home',
@@ -35,12 +44,12 @@ const PUBLIC_ROUTES = [
         element: <AboutView />,
       },
       {
-        path: '/detail/:id',
+        path: '/product/detail/:id',
         element: <ProductDetailView />,
       },
       {
-        path: '/cart',
-        element: <CartView />,
+        path: '/product',
+        element: <FilterProductView />,
       },
       {
         path: '/auth',

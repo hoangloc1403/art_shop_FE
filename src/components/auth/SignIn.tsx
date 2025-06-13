@@ -1,20 +1,20 @@
-import { Paper, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '@/store';
 import { sessionStorageSet } from '@/utils';
 import SignInForm from './components/SignInForm';
 import { authService } from '@/services';
 import { jwtDecode } from 'jwt-decode';
+import { useSnackbar } from 'notistack';
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [, dispatch] = useAppStore();
+  const { enqueueSnackbar } = useSnackbar();
 
   const onLogin = async (data: { email: string; password: string }) => {
     try {
-      console.log('Login Data ', data);
       const response = await authService.login(data);
-      console.log('Login Response ', response);
       const { access_token } = response;
 
       // Lưu token vào sessionStorage
@@ -29,27 +29,51 @@ const SignIn = () => {
       } else {
         navigate('/', { replace: true });
       }
+      enqueueSnackbar('Đăng nhập thành công!', { variant: 'success' });
     } catch (error) {
       console.error('Login failed:', error);
-      alert('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!');
+      enqueueSnackbar('Đăng nhập thất bại, vui lòng kiểm tra lại thông tin!', { variant: 'error' });
     }
   };
 
   return (
-    <Paper
-      elevation={3}
+    <Box
       sx={{
-        padding: 4,
-        borderRadius: 2,
-        textAlign: 'center',
-        width: '100%',
+        minHeight: '100vh',
+        backgroundImage:
+          'url(https://images.unsplash.com/photo-1572947650440-e8a97ef053b2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          inset: 0,
+          bgcolor: 'rgba(0, 0, 0, 0.4)', // overlay đen mờ để làm nổi form
+          zIndex: 1,
+        },
       }}
     >
-      <Typography variant="h5" fontWeight="bold" mb={2}>
-        Đăng nhập
-      </Typography>
-      <SignInForm onLogin={onLogin} />
-    </Paper>
+      <Paper
+        elevation={6}
+        sx={{
+          padding: 5,
+          borderRadius: 3,
+          maxWidth: 400,
+          width: '100%',
+          zIndex: 2,
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="h4" fontWeight="bold" mb={3}>
+          Đăng nhập
+        </Typography>
+        <SignInForm onLogin={onLogin} />
+      </Paper>
+    </Box>
   );
 };
 

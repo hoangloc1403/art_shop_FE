@@ -10,6 +10,10 @@ type Product = {
   categories: CategoryFilter[];
   width: number;
   height: number;
+  medium: string;
+  description: string;
+  shortDescription: string;
+  quantity: number;
 };
 
 export default Product;

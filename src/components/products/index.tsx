@@ -1,6 +1,13 @@
-import ProductGallery from '@/components/products/ProductGallery';
 import CategoryFeaturedGallery from './CategoryFeaturedGallery';
 import ProductTableAdmin from '@/components/products/ProductTableAdmin';
 import ProductAddContainer from './ProductAddContainer';
+import ProductEditContainer from './ProductEditContainer';
+import ProductFeaturedGallery from './ProductFeaturedGallery';
 
-export { ProductGallery, CategoryFeaturedGallery, ProductTableAdmin, ProductAddContainer };
+export {
+  ProductFeaturedGallery,
+  CategoryFeaturedGallery,
+  ProductTableAdmin,
+  ProductAddContainer,
+  ProductEditContainer,
+};

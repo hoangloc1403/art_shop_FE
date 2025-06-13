@@ -1,37 +1,90 @@
 import { Category } from '@/types';
-import { Box, Typography } from '@mui/material';
+import { navigateTo } from '@/utils';
+import { Box, Button, Typography } from '@mui/material';
 import { FunctionComponent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   item: Category;
+  description: string;
 }
 
-const CategoryFeaturedGalleryItem: FunctionComponent<Props> = ({ item }) => {
+const CategoryFeaturedGalleryItem: FunctionComponent<Props> = ({ item, description }) => {
+  const navigate = useNavigate();
   const artworkTotalText = `${item.artworkCount} tác phẩm`;
 
   return (
     <Box
       sx={{
-        position: 'relative',
-        overflow: 'hidden',
-        border: '1px solid #e0e0e0',
-        borderRadius: '8px',
-        transition: 'transform 0.3s, box-shadow 0.3s',
-        '&:hover': {
-          transform: 'scale(1.04)',
-          boxShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
-        },
+        backgroundColor: '#eef4fa',
+        padding: 2,
+        // textAlign: 'center',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}
     >
-      <img src={item.imageUrl} alt={item.name} style={{ width: '100%', height: '400px', objectFit: 'cover' }} />
-      <Box sx={{ padding: '16px' }}>
-        <Typography variant="body1" fontWeight="bold" color="black">
-          {item.name}
-        </Typography>
-        <Typography variant="body2" color="textPrimary" sx={{ textTransform: 'uppercase' }}>
-          {artworkTotalText}
-        </Typography>
-      </Box>
+      <Box
+        component="img"
+        src={item.imageUrl}
+        alt={item.name}
+        sx={{
+          width: '100%',
+          height: '440px',
+          objectFit: 'cover',
+          borderRadius: 1,
+          mb: 2,
+        }}
+      />
+
+      <Typography
+        variant="h6"
+        component="h3"
+        sx={{
+          fontFamily: '"Orpheus Pro", serif',
+          color: '#423E31',
+          fontWeight: 400,
+          fontSize: '2.1rem',
+          mb: 1,
+        }}
+      >
+        {item.name}
+      </Typography>
+
+      <Typography
+        variant="body2"
+        sx={{
+          color: '#555',
+          mb: 5,
+          fontFamily: '"General Sans", sans-serif',
+        }}
+      >
+        {/* {item.description || 'Khám phá những bức tranh tuyệt vời phù hợp với không gian của bạn.'} */}
+        {description}
+      </Typography>
+
+      <Button
+        variant="outlined"
+        onClick={() => navigate(`/product?categoryIds=${item.id}`)}
+        sx={{
+          width: 'fit-content',
+          mt: 'auto',
+          fontFamily: '"General Sans", sans-serif',
+          textTransform: 'none',
+          fontWeight: 500,
+          borderColor: '#423E31',
+          color: '#423E31',
+          transition: 'all 0.5s ease',
+          '&:hover': {
+            borderColor: '#092933',
+            backgroundColor: '#092933',
+            color: '#fff',
+          },
+        }}
+      >
+        Xem {item.name}
+      </Button>
     </Box>
   );
 };

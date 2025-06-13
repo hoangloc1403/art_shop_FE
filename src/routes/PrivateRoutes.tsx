@@ -4,16 +4,23 @@ import { PrivateLayout } from '@/layout';
 import { NotFoundView } from '@/views';
 import AboutView from '@/views/admin/ProductManagement';
 import DevView from '@/views/Dev';
-import WelcomeView from '@/views/Welcome';
 import NotImplementedView from '@/views/NotImplementedView';
 import HomeView from '@/views/Home';
 import CartView from '@/views/Cart';
-import ProductDetailView from '@/views/ProductDetail';
 import { CheckoutSuccessView, CheckoutView } from '@/views/Checkout';
+import { ProfileView } from '@/views/Profile';
+import { OrderDetailView } from '@/views/Order';
+import { ScrollToTop } from '@/components';
+import { FilterProductView, ProductDetailView } from '@/views/Product';
 
 const PRIVATE_ROUTES = [
   {
-    element: <PrivateLayout />, // Layout as parent/wrapper component for all routes
+    element: (
+      <>
+        <ScrollToTop />
+        <PrivateLayout />
+      </>
+    ), // Layout as parent/wrapper component for all routes
     children: [
       {
         path: '*',
@@ -21,7 +28,7 @@ const PRIVATE_ROUTES = [
       },
       {
         path: '/',
-        element: <WelcomeView />,
+        element: <HomeView />,
       },
       {
         path: '/home',
@@ -40,8 +47,21 @@ const PRIVATE_ROUTES = [
         element: <CheckoutSuccessView />,
       },
       {
-        path: '/detail/:id',
+        path: '/product/detail/:id',
         element: <ProductDetailView />,
+      },
+      {
+        path: '/product',
+        element: <FilterProductView />,
+      },
+      {
+        path: '/order/:id',
+        element: <OrderDetailView />,
+      },
+
+      {
+        path: '/profile',
+        element: <ProfileView />,
       },
       {
         path: 'auth/*',

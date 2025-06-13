@@ -4,6 +4,7 @@ import { ErrorBoundary } from '@/components';
 import Routes from '@/routes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SnackbarProvider } from 'notistack';
+import { SnackbarUtilsConfigurator } from './utils/snackbar';
 
 /**
  * Root Application Component
@@ -19,6 +20,7 @@ const MainApp = () => {
         <StoreProvider>
           <ThemeProvider>
             <SnackbarProvider maxSnack={3}>
+              <SnackbarUtilsConfigurator />
               <Routes />
             </SnackbarProvider>
           </ThemeProvider>

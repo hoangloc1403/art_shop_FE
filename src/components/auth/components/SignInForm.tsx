@@ -50,7 +50,21 @@ const SignInForm = ({ onLogin }: SignInFormProps) => {
         helperText={errors.password?.message}
       />
 
-      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }} disabled={isSubmitting}>
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        sx={{
+          mt: 2,
+          backgroundColor: '#092933',
+          color: 'white',
+          fontWeight: 500,
+          transition: 'all 0.3s ease',
+          ':hover': { backgroundColor: '#e7d9b5', color: 'rgb(66,62,49)' },
+        }}
+        disabled={isSubmitting}
+      >
         {isSubmitting ? 'Đang đăng nhập...' : 'Đăng nhập'}
       </Button>
     </Box>

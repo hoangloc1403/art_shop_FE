@@ -103,7 +103,11 @@ const CategoryTableAdmin = () => {
                 </TableCell>
                 <TableCell>{category.artworkCount?.toLocaleString() ?? 0}</TableCell>
                 <TableCell>
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => navigate(`/admin/categories/${category.id}/edit`)}
+                  >
                     Sửa
                   </Button>
                   <Button size="small" color="error">

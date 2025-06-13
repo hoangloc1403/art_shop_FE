@@ -1,8 +1,12 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { FC, PropsWithChildren } from 'react';
 
 const GalleryLayout: FC<PropsWithChildren> = ({ children }) => {
-  return <Box sx={{ padding: '70px', textAlign: 'center' }}>{children}</Box>;
+  return (
+    <Box sx={{ backgroundColor: 'rgb(236, 243, 249)', py: 8 }}>
+      <Container maxWidth="xl">{children}</Container>
+    </Box>
+  );
 };
 
 export default GalleryLayout;

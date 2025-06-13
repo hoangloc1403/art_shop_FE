@@ -7,8 +7,8 @@ import { ReactNode } from 'react';
 
 const StyledText = styled(Typography)({
   fontStyle: 'italic',
-  textDecoration: 'underline',
-  textDecorationColor: '#2196f3',
+  // textDecoration: 'underline',
+  // textDecorationColor: '#2196f3',
 });
 
 interface ServiceFeatureProps {
