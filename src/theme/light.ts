@@ -13,6 +13,9 @@ export const LIGHT_THEME: ThemeOptions = {
     //   default: '#FFFFFF',
     // },
   },
+  typography: {
+    fontFamily: '"EB Garamond", sans-serif',
+  },
 };
 
 export default LIGHT_THEME;

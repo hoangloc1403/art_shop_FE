@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { Stack } from '@mui/material';
 import { useAppStore } from '@/store';
 import { useEventLogout } from '@/hooks/auth';
-import { AppButton, AppLink, AppView } from '@/components';
+import { AppButton, AppView } from '@/components';
 import NotImplementedView from '../NotImplementedView';
 import { sessionStorageSet } from '@/utils/sessionStorage';
 
@@ -22,7 +22,6 @@ const AuthView = () => {
   return (
     <AppView>
       <NotImplementedView name="Auth" />
-
       <Stack direction="row" justifyContent="center">
         <AppButton color="primary" onClick={onLogin}>
           Emulate User Login
@@ -31,10 +30,6 @@ const AuthView = () => {
           Logout User
         </AppButton>
       </Stack>
-
-      <div>
-        The source code is available at <AppLink href="https://github.com/karpolan/react-mui-vite-ts">GitHub</AppLink>
-      </div>
     </AppView>
   );
 };

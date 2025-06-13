@@ -7,5 +7,17 @@ import AppLink from './AppLink';
 import AppLoading from './AppLoading';
 import AppView from './AppView';
 import ErrorBoundary from './ErrorBoundary';
+import ScrollToTop from './ScrollToTop';
 
-export { ErrorBoundary, AppAlert, AppForm, AppButton, AppIcon, AppIconButton, AppLink, AppLoading, AppView };
+export {
+  ErrorBoundary,
+  AppAlert,
+  AppForm,
+  AppButton,
+  AppIcon,
+  AppIconButton,
+  AppLink,
+  AppLoading,
+  AppView,
+  ScrollToTop,
+};
