@@ -35,7 +35,6 @@
     "react-dom": "latest",
     "react-draggable": "^4.4.6",
     "react-hook-form": "^7.54.2",
-    "react-image-magnify": "^2.7.4",
     "react-material-ui-carousel": "^3.4.2",
     "react-medium-image-zoom": "^5.2.14",
     "react-router-dom": "latest",
