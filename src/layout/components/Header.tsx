@@ -10,6 +10,7 @@ import { BUTTON_TEXT } from '@/views/Home/const';
 import { useUserRoleFromToken } from '@/hooks';
 import { useNavigate } from 'react-router-dom';
 import { ButtonHeader, HideOnScroll } from '@/components/layout';
+import { TEXT } from './const';
 
 const SearchContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,7 +57,7 @@ const Header: React.FC = () => {
               }}
               onClick={() => navigate('/')}
             >
-              KULISG
+              {TEXT.LOGO}
             </Button>
           </Box>
           <Stack direction="row" spacing={1} alignItems="center" sx={{ marginRight: 2 }}>

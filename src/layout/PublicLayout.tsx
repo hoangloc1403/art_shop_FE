@@ -8,7 +8,7 @@ import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 import { BOTTOM_BAR_DESKTOP_VISIBLE } from './config';
 
 // TODO: change to your app name or other word
-const TITLE_PUBLIC = 'KuliSG'; // Title for pages without/before authentication
+const TITLE_PUBLIC = 'VƯỜN TRANH'; // Title for pages without/before authentication
 
 /**
  * SideBar navigation items with links for Public Layout

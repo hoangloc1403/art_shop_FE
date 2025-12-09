@@ -3,7 +3,7 @@ import { IS_DEBUG } from '@/config';
 import { LinkToPage } from '@/utils';
 import TopBarAndSideBarLayout from './TopBarAndSideBarLayout';
 
-const TITLE_PRIVATE = 'KuliSG'; // Title for pages after authentication
+const TITLE_PRIVATE = 'VƯỜN TRANH'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links for Private Layout

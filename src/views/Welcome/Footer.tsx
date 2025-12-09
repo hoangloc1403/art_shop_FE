@@ -2,7 +2,7 @@ import { Grid, Typography, Box, Stack } from '@mui/material';
 import { TEXT } from '../Home/const';
 import { ButtonLogo, LinkText } from '@/components/layout';
 import { Chat, FacebookOutlined, Instagram, Twitter } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <Box sx={{ px: 40, backgroundColor: '#092933', paddingTop: '50px', paddingBottom: '70px', color: '#fff' }}>
@@ -10,7 +10,7 @@ const Footer = () => {
         <Grid container sx={{ borderBottom: '1px solid #ddd', paddingBottom: '40px', marginBottom: '30px' }}>
           <Grid item xs={12} sm={6}>
             <ButtonLogo color="white" hoverColor="#ffffffc3">
-              {'KULISG'}
+              {TEXT.LOGO}
             </ButtonLogo>
             <Typography variant="body2" fontSize="14px" maxWidth="490px">
               {TEXT.INTRODUCE}
@@ -173,7 +173,7 @@ const Footer = () => {
               fontSize="14px"
               textTransform="uppercase"
             >
-              © 2025 KULISG
+              © 2025 VƯỜN TRANH
             </Typography>
           </Grid>
         </Grid>

@@ -12,11 +12,12 @@ enum BUTTON_TEXT {
 }
 
 enum TEXT {
-  COMPANY = '© Công ty Cổ phần Kuli Sài Gòn',
-  CREATE = 'Powered by KuliSG',
+  LOGO = 'vườn tranh',
+  COMPANY = '© Công ty Cổ phần VƯỜN TRANH Sài Gòn',
+  CREATE = 'Powered by VƯỜN TRANH',
   HOTLINE = '0373 359 912',
   TIME_WORK = 'Tất cả các ngày trong tuần (Trừ tết Âm Lịch)',
-  INTRODUCE = 'KULISG cung cấp tranh sơn dầu, tranh sơn mài nguyên bản, độc đáo từ các họa sĩ tài năng trên khắp cả nước. Chúng tôi nhận vẽ tranh theo mẫu, kích thước yêu cầu và có xưởng đóng khung tranh gỗ tự nhiên chất lượng cao, mẫu mã đa dạng, giá tốt – lựa chọn tuyệt vời cho mọi khách hàng yêu nghệ thuật.',
+  INTRODUCE = 'VƯỜN TRANH cung cấp tranh sơn dầu, tranh sơn mài nguyên bản, độc đáo từ các họa sĩ tài năng trên khắp cả nước. Chúng tôi nhận vẽ tranh theo mẫu, kích thước yêu cầu và có xưởng đóng khung tranh gỗ tự nhiên chất lượng cao, mẫu mã đa dạng, giá tốt – lựa chọn tuyệt vời cho mọi khách hàng yêu nghệ thuật.',
   EMAIL = 'hoanganhwork0605@gmail.com',
 }
 
